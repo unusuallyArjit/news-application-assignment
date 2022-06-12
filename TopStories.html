@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Stories</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1><a href="index.html">Home</a></h1>
+    <div id="stories">
+        <div class="tenor-gif-embed stretch" data-postid="18839165" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/loading-white-screen-spinning-gif-18839165">Loading White GIF</a>from <a href="https://tenor.com/search/loading-gifs">Loading GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+    </div>
+    <script>
+        fetch("http://localhost:3000/MyTopStories").then(
+           response => response.json()
+        ).then(
+            response => {
+                document.querySelector("#stories").innerHTML=""
+                response.forEach(story =>
+                {
+                    document.querySelector("#stories").innerHTML+=`<a href="${story.url}"><h2>${story.title}</h2><img src="${story.imageUrl}"></a>`
+                })
+            }
+        )
+    </script>
+</body>
+</html>
